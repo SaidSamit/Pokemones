@@ -1,30 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:padding="16dp"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/etId"
-        android:hint="ID del Pokémon"
-        android:inputType="number"
+        android:id="@+id/editNombre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Pokémon" />
 
     <EditText
-        android:id="@+id/etNombre"
-        android:hint="Nuevo nombre"
+        android:id="@+id/editTipo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <EditText
-        android:id="@+id/etTipo"
-        android:hint="Nuevo tipo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Tipo" />
 
     <Button
         android:id="@+id/btnActualizar"
-        android:text="Actualizar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

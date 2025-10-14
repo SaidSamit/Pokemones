@@ -1,45 +1,59 @@
 package com.pokemones.app;
 
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UpdatePokemonActivity extends AppCompatActivity {
-    private EditText etId, etNombre, etTipo;
-    private DBHelper dbHelper;
+    EditText editNombre, editTipo;
+    Button btnActualizar;
+    DBHelper dbHelper;
+    int pokemonId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_pokemon);
 
-        etId = findViewById(R.id.etId);
-        etNombre = findViewById(R.id.etNombre);
-        etTipo = findViewById(R.id.etTipo);
+        editNombre = findViewById(R.id.editNombre);
+        editTipo = findViewById(R.id.editTipo);
+        btnActualizar = findViewById(R.id.btnActualizar);
         dbHelper = new DBHelper(this);
 
-        findViewById(R.id.btnActualizar).setOnClickListener(v -> {
-            int id = Integer.parseInt(etId.getText().toString());
-            String nombre = etNombre.getText().toString();
-            String tipo = etTipo.getText().toString();
+        pokemonId = getIntent().getIntExtra("id", -1);
+        cargarDatos(pokemonId);
 
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+        btnActualizar.setOnClickListener(v -> {
             ContentValues values = new ContentValues();
-            values.put(PokemonContract.PokemonEntry.COLUMN_NAME, nombre);
-            values.put(PokemonContract.PokemonEntry.COLUMN_TYPE, tipo);
+            values.put(PokemonContract.PokemonEntry.COLUMN_NAME, editNombre.getText().toString());
+            values.put(PokemonContract.PokemonEntry.COLUMN_TYPE, editTipo.getText().toString());
 
-            int rowsUpdated = db.update(PokemonContract.PokemonEntry.TABLE_NAME, values,
-                    PokemonContract.PokemonEntry._ID + " = ?", new String[]{String.valueOf(id)});
-
-            if (rowsUpdated > 0) {
-                Toast.makeText(this, "Pokémon actualizado!", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(this, "No se encontró el Pokémon.", Toast.LENGTH_SHORT).show();
-            }
+            dbHelper.getWritableDatabase().update(
+                    PokemonContract.PokemonEntry.TABLE_NAME,
+                    values,
+                    PokemonContract.PokemonEntry._ID + "=?",
+                    new String[]{String.valueOf(pokemonId)}
+            );
+            finish();
         });
+    }
+
+    private void cargarDatos(int id) {
+        Cursor cursor = dbHelper.getReadableDatabase().query(
+                PokemonContract.PokemonEntry.TABLE_NAME,
+                null,
+                PokemonContract.PokemonEntry._ID + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null
+        );
+
+        if (cursor.moveToFirst()) {
+            editNombre.setText(cursor.getString(cursor.getColumnIndexOrThrow(PokemonContract.PokemonEntry.COLUMN_NAME)));
+            editTipo.setText(cursor.getString(cursor.getColumnIndexOrThrow(PokemonContract.PokemonEntry.COLUMN_TYPE)));
+        }
+        cursor.close();
     }
 }

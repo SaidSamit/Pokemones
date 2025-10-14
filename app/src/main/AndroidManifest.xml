@@ -5,20 +5,27 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Pokemones"
+        android:label="PokemonesApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
 
-        <activity android:name=".AddPokemonActivity" android:exported="true" />
-        <activity android:name=".UpdatePokemonActivity" android:exported="true" />
-        <activity android:name=".DeletePokemonActivity" android:exported="true" />
-        <activity android:name=".MainActivity" android:exported="true">
+        <!-- Actividad principal -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Actividades del flujo CRUD -->
+        <activity android:name=".AddPokemonActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".UpdatePokemonActivity" />
+        <activity android:name=".DeletePokemonActivity" />
+        <activity android:name=".SelectPokemonToUpdateActivity" />
 
     </application>
 

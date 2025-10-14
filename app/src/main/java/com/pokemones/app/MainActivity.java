@@ -1,64 +1,75 @@
 package com.pokemones.app;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SimpleCursorAdapter;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private DBHelper dbHelper;
-    private ListView lvPokemones;
+    DBHelper dbHelper;
+    ListView listView;
+    Button btnEditar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lvPokemones = findViewById(R.id.lvPokemones);
         dbHelper = new DBHelper(this);
+        listView = findViewById(R.id.listViewPokemones);
+        btnEditar = findViewById(R.id.btnEditar);
 
-        Button btnAgregar = findViewById(R.id.btnAgregar);
-        Button btnActualizar = findViewById(R.id.btnActualizar);
-        Button btnEliminar = findViewById(R.id.btnEliminar);
+        mostrarPokemones();
 
-        btnAgregar.setOnClickListener(v ->
-                startActivity(new Intent(this, AddPokemonActivity.class)));
-
-        btnActualizar.setOnClickListener(v ->
-                startActivity(new Intent(this, UpdatePokemonActivity.class)));
-
-        btnEliminar.setOnClickListener(v ->
-                startActivity(new Intent(this, DeletePokemonActivity.class)));
-
-        loadPokemones();
+        btnEditar.setOnClickListener(v -> mostrarPopup());
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadPokemones(); // Recarga la lista al volver de otra actividad
+    private void mostrarPokemones() {
+        Cursor cursor = dbHelper.getReadableDatabase().query(
+                PokemonContract.PokemonEntry.TABLE_NAME,
+                null, null, null, null, null, null
+        );
+
+        String[] from = {
+                PokemonContract.PokemonEntry.COLUMN_NAME,
+                PokemonContract.PokemonEntry.COLUMN_TYPE
+        };
+        int[] to = { R.id.textNombre, R.id.textTipo };
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.list_item_pokemon,
+                cursor,
+                from,
+                to,
+                0
+        );
+
+        listView.setAdapter(adapter);
     }
 
-    private void loadPokemones() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(PokemonContract.PokemonEntry.TABLE_NAME,
-                null, null, null, null, null, null);
+    private void mostrarPopup() {
+        View popupView = LayoutInflater.from(this).inflate(R.layout.popup_edit_delete, null);
+        AlertDialog dialog = new AlertDialog.Builder(this).setView(popupView).create();
 
-        ArrayList<String> pokemones = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(cursor.getColumnIndexOrThrow(PokemonContract.PokemonEntry._ID));
-            String nombre = cursor.getString(cursor.getColumnIndexOrThrow(PokemonContract.PokemonEntry.COLUMN_NAME));
-            String tipo = cursor.getString(cursor.getColumnIndexOrThrow(PokemonContract.PokemonEntry.COLUMN_TYPE));
-            pokemones.add("ID: " + id + " - " + nombre + " | Tipo: " + tipo);
-        }
-        cursor.close();
+        // Botón para editar Pokémon lleva a lista para seleccionar cuál editar
+        popupView.findViewById(R.id.btnEditarPopup).setOnClickListener(v -> {
+            startActivity(new Intent(this, SelectPokemonToUpdateActivity.class));
+            dialog.dismiss();
+        });
 
-        lvPokemones.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pokemones));
+        // Botón para eliminar Pokémon lleva a lista para seleccionar cuál eliminar
+        popupView.findViewById(R.id.btnEliminarPopup).setOnClickListener(v -> {
+            startActivity(new Intent(this, DeletePokemonActivity.class));
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 }
