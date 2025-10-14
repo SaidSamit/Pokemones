@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:padding="16dp"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/etNombre"
-        android:hint="Nombre del Pokémon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Pokémon" />
 
     <EditText
         android:id="@+id/etTipo"
-        android:hint="Tipo (Fuego, Agua, etc.)"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Tipo" />
 
     <Button
         android:id="@+id/btnGuardar"
-        android:text="Guardar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
