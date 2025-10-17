@@ -25,4 +25,3 @@
         android:textSize="14sp"
         android:textColor="@color/text_on_light" />
 </LinearLayout>
-    git checkout -b BCarrasco/ui-pokemon-theme
