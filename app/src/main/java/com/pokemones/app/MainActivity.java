@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,21 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 null, null, null, null, null, null
         );
 
-        String[] from = {
-                PokemonContract.PokemonEntry.COLUMN_NAME,
-                PokemonContract.PokemonEntry.COLUMN_TYPE
-        };
-        int[] to = { R.id.textNombre, R.id.textTipo };
-
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                this,
-                R.layout.list_item_pokemon,
-                cursor,
-                from,
-                to,
-                0
-        );
-
+        PokemonCursorAdapter adapter = new PokemonCursorAdapter(this, cursor);
         listView.setAdapter(adapter);
     }
 

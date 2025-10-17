@@ -1,17 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/surface_variant"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnAgregarPokemon"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Agregar Pokémon" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/pokemon_secondary"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/text_on_dark" />
 
-    <Button
-        android:id="@+id/btnVerPokemones"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver Pokemones"
-        android:layout_marginTop="16dp" />
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imgWelcome"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:src="@drawable/ic_pokeball"
+                android:contentDescription="@string/app_name"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenido entrenador"
+                android:textSize="20sp"
+                android:textColor="@color/text_on_light"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestiona y clasifica tus Pokemones"
+                android:textColor="@color/text_on_light"
+                android:layout_marginTop="6dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <Button
+                android:id="@+id/btnAgregarPokemon"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/button_primary_selector"
+                style="@style/Button.Primary"
+                android:text="@string/agregar_pok_mon" />
+
+            <Button
+                android:id="@+id/btnVerPokemones"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_secondary_selector"
+                style="@style/Button.Secondary"
+                android:text="@string/ver_pokemones" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

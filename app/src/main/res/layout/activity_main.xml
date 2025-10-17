@@ -1,16 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface">
 
     <ListView
         android:id="@+id/listViewPokemones"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btnEditar" />
+        android:layout_above="@+id/btnEditar"
+        android:divider="@color/surface_variant"
+        android:dividerHeight="8dp"
+        android:padding="8dp" />
 
     <Button
         android:id="@+id/btnEditar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Editar"
-        android:layout_alignParentBottom="true" />
+        android:layout_height="56dp"
+        android:text="@string/agregar_pok_mon"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_secondary_selector"
+        style="@style/Button.Secondary" />
 </RelativeLayout>
