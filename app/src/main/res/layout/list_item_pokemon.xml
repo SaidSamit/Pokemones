@@ -1,6 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="12dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:id="@+id/containerItem"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_card_background">
 
     <TextView
         android:id="@+id/textNombre"
@@ -8,12 +14,15 @@
         android:layout_height="wrap_content"
         android:text="Nombre"
         android:textStyle="bold"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@color/text_on_light" />
 
     <TextView
         android:id="@+id/textTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tipo"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textColor="@color/text_on_light" />
 </LinearLayout>
+    git checkout -b BCarrasco/ui-pokemon-theme

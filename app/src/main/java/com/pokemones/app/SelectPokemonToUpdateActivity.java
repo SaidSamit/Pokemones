@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SelectPokemonToUpdateActivity extends AppCompatActivity {
@@ -26,14 +25,7 @@ public class SelectPokemonToUpdateActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.getReadableDatabase().query(
                 PokemonContract.PokemonEntry.TABLE_NAME, null, null, null, null, null, null);
 
-        String[] from = {
-                PokemonContract.PokemonEntry.COLUMN_NAME,
-                PokemonContract.PokemonEntry.COLUMN_TYPE
-        };
-        int[] to = { R.id.textNombre, R.id.textTipo };
-
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.list_item_pokemon, cursor, from, to, 0);
+        PokemonCursorAdapter adapter = new PokemonCursorAdapter(this, cursor);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {

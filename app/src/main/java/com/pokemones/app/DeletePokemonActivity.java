@@ -3,7 +3,6 @@ package com.pokemones.app;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DeletePokemonActivity extends AppCompatActivity {
@@ -25,14 +24,7 @@ public class DeletePokemonActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.getReadableDatabase().query(
                 PokemonContract.PokemonEntry.TABLE_NAME, null, null, null, null, null, null);
 
-        String[] from = {
-                PokemonContract.PokemonEntry.COLUMN_NAME,
-                PokemonContract.PokemonEntry.COLUMN_TYPE
-        };
-        int[] to = { R.id.textNombre, R.id.textTipo };
-
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.list_item_pokemon, cursor, from, to, 0);
+        PokemonCursorAdapter adapter = new PokemonCursorAdapter(this, cursor);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -41,7 +33,7 @@ public class DeletePokemonActivity extends AppCompatActivity {
                     PokemonContract.PokemonEntry._ID + "=?",
                     new String[]{String.valueOf(id)}
             );
-            mostrarPokemones(); // refrescar
+            mostrarPokemones(); // refrescar lista después de eliminar
         });
     }
 }
