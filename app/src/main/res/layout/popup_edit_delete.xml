@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/surface">
+
+    <!-- Botón original que tu MainActivity usa (no tocar id) -->
+    <Button
+        android:id="@+id/btnEditarPopup"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/button_primary_selector"
+        style="@style/Button.Primary"
+        android:text="@string/agregar_pok_mon" />
+
+    <!-- Recreamos el botón que MainActivity espera -->
+    <Button
+        android:id="@+id/btnEliminarPopup"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_secondary_selector"
+        style="@style/Button.Secondary"
+        android:text="@string/editar_pok_mon" />
+</LinearLayout>

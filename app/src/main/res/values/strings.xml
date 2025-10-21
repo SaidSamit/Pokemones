@@ -1,3 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Strings existentes -->
     <string name="app_name">Pokemones</string>
+    <string name="agregar_pok_mon">Agregar Pokémon</string>
+    <string name="ver_pokemones">Ver Pokemones</string>
+    <string name="editar_pok_mon">Editar Pokémon</string>
+    <string name="cancelar">Cancelar</string>
+    <!-- Nuevos/auxiliares -->
+    <string name="guardar">Guardar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="selecciona_tipo">Selecciona tipo</string>
+    <string name="hint_nombre">Nombre del Pokémon</string>
+    <string name="hint_tipo">Tipo</string>
+
+    <string-array name="pokemon_types">
+        <item>Fuego</item>
+        <item>Agua</item>
+        <item>Eléctrico</item>
+        <item>Planta</item>
+        <item>Tierra</item>
+        <item>Hielo</item>
+        <item>Psíquico</item>
+        <item>Roca</item>
+        <item>Normal</item>
+    </string-array>
 </resources>

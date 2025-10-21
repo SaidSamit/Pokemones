@@ -3,12 +3,16 @@ package com.pokemones.app;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddPokemonActivity extends AppCompatActivity {
-    private EditText etNombre, etTipo;
+
+    private EditText etNombre;
+    private Spinner spinnerTipo;
     private DBHelper dbHelper;
 
     @Override
@@ -17,12 +21,22 @@ public class AddPokemonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_pokemon);
 
         etNombre = findViewById(R.id.etNombre);
-        etTipo = findViewById(R.id.etTipo);
+        spinnerTipo = findViewById(R.id.spinnerTipo);
         dbHelper = new DBHelper(this);
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.pokemon_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTipo.setAdapter(adapter);
+
         findViewById(R.id.btnGuardar).setOnClickListener(v -> {
-            String nombre = etNombre.getText().toString();
-            String tipo = etTipo.getText().toString();
+            String nombre = etNombre.getText().toString().trim();
+            String tipo = spinnerTipo.getSelectedItem().toString().trim();
+
+            if (nombre.isEmpty()) {
+                Toast.makeText(this, "Ingresa el nombre del Pokémon", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();

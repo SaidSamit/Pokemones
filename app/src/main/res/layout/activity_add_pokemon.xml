@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="16dp"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface">
 
     <EditText
         android:id="@+id/etNombre"
-        android:hint="Nombre del Pokémon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_nombre"
+        android:inputType="textPersonName"
+        android:backgroundTint="@color/pokemon_secondary"
+        android:padding="10dp" />
 
-    <EditText
-        android:id="@+id/etTipo"
-        android:hint="Tipo (Fuego, Agua, etc.)"
+    <Spinner
+        android:id="@+id/spinnerTipo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:prompt="@string/selecciona_tipo"
+        android:layout_marginTop="12dp" />
 
     <Button
         android:id="@+id/btnGuardar"
-        android:text="Guardar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="48dp"
+        android:text="@string/guardar"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_primary_selector"
+        style="@style/Button.Primary" />
 </LinearLayout>
