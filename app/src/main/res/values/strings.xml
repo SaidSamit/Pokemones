@@ -4,7 +4,8 @@
     <string name="app_name">Pokemones</string>
     <string name="agregar_pok_mon">Agregar Pokémon</string>
     <string name="ver_pokemones">Ver Pokemones</string>
-
+    <string name="editar_pok_mon">Editar Pokémon</string>
+    <string name="cancelar">Cancelar</string>
     <!-- Nuevos/auxiliares -->
     <string name="guardar">Guardar</string>
     <string name="actualizar">Actualizar</string>

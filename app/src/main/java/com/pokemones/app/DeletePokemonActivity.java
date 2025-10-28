@@ -19,6 +19,9 @@ public class DeletePokemonActivity extends AppCompatActivity {
 
         mostrarPokemones();
     }
+    public void cancelarAccion(android.view.View view) {
+        finish(); // 🔙 Cierra la pantalla y vuelve a la anterior
+    }
 
     private void mostrarPokemones() {
         Cursor cursor = dbHelper.getReadableDatabase().query(
