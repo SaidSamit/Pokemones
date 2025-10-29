@@ -66,8 +66,8 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_secondary_selector"
-                style="@style/Button.Secondary"
+                android:background="@drawable/button_primary_selector"
+                style="@style/Button.Primary"
                 android:text="@string/cancelar"
                 android:onClick="cancelarAccion" />
         </LinearLayout>
