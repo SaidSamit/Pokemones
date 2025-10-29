@@ -15,8 +15,6 @@ Aplicación Android en **Java** que permite **agregar, ver, actualizar y elimina
 
 ---
 
-## ⚙️ Estructura básica
-
 👥 Equipo de desarrollo
 
 Byron Carrasco
