@@ -26,3 +26,5 @@ Said Samit
 Luz Bernales
 
 Kevin Huaycani
+
+https://www.figma.com/make/b6BYeIvMPloyYfF0yso8U4/Diagrama-de-Flujo-Pok%C3%A9mon?node-id=0-1&t=pHFD5AVdFos8qLFg-1 
